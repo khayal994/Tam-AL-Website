@@ -367,12 +367,20 @@ function renderFavorites() {
         listItem.classList.add('favorites-list-item');
 
         listItem.innerHTML = `
-            <img src="${fav.image}" alt="${fav.name}">
+            <img src="${fav.image}" alt="${fav.name}" style="width: 150px;height: 150px;">
             <div class="product-infox">
-                <p class="product-pricex">${fav.price}</p>
-                <p class="product-namex">${fav.name}</p>
-                <p class="add-to-cart">Səbətə əlavə et</p>
-                <span class="remove-icon">&times;</span>
+                <p class="product-pricex" style="font-size: 20px;top: 45px;position: absolute;">${fav.price}</p>
+                <p class="product-namex" style="font-size: 14px;position: absolute;top: 75px;">${fav.name}</p>
+                <span class="animated-delivery animated as" style="margin-left: 150px;position: absolute;top: 105px;">Çatdırılma Pulsuz 0₼</span>
+                <div class="product-rating" style="position: absolute;top: 105px;">
+                            <span class="star">★</span>
+                            <span class="star ara">★</span>
+                            <span class="star ara">★</span>
+                            <span class="star ara">★</span>
+                            <span class="star ara">☆<span class="deyer"> 22</span></span>        
+                </div>
+                <p class="add-to-cart" style="position: absolute;top: 135px;">Səbətə əlavə et</p>
+                <span class="remove-icon" style="position: absolute;top: 10px;">&times;</span>
             </div>
         `;
 
