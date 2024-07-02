@@ -22,6 +22,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@600&display=swap" rel="stylesheet">
 </head>
 <body>
   <section>
@@ -41,19 +44,23 @@
   <header>
     <div class="header-main">
         <div class="logo">
-            <h1 style="color: black;">TamAl.</h1>
+            <h1>TamAl.</h1>
         </div>
         <div class="search-bar">
             <input type="text" placeholder="Search...">
-            <button><span class="material-icons">search</span></button>
+            <a href="index2.html" style="text-decoration: none;"> <button><span class="material-icons" onclick="searchProducts()">search</span></button></a>
         </div>
         <div class="user-actions">
-          <div class="cart-iconlar" >
+          <div class="cart-iconlar cartResponsive" >
             <span id="cart-countlar">0</span>
         </div>
-        <a href="#"><span class="material-icons">person</span></a>
+        <a href="#" onclick="toggleDropdown(event)"><span class="material-icons piconResponsive picon">person</span></a>
+        <div class="dropdown-menu">
+          <a href="index3.html"><span>Qeydiyyatdan keç</span><span class="material-icons">person_add</span></a>
+          <a href="#"><span>Daxil ol</span><span class="material-icons">login</span></a>
+      </div>
         <ul class="nav-linksx">
-          <li class="favorites">
+          <li class="favorites favoritesResponsive">
               <a href="#" id="openFavorites">
                   <span class="icon" style="color: black;">❤</span>
                   <span class="count">0</span>
@@ -62,11 +69,11 @@
       </ul>
             
              
-            <a href="#"><span class="material-icons cart-countlar" onclick="toggleCart()">shopping_cart</span></a>
+            <a href="#"><span class="material-icons sebeticon sebeticonResponsive cart-countlar" onclick="toggleCart()">shopping_cart</span></a>
         </div>
        
     </div>
-</header>
+</header><br class="as"><br class="as"><br class="as"><br class="as">
 <div class="container-fluid">
   <div class="row py-3">
     <div class="d-flex  justify-content-center justify-content-sm-between align-items-center">
@@ -305,43 +312,43 @@
     <div class="kataloqCarusel" id="carousel">
         <div class="carousel-items">
             <img src="Carusel-Geyim.jpg" alt="Sana Özel">
-            <p>Geyim</p>
+            <p style="color: black; margin-top: 8px; font-size: 13.8px;">Geyim</p>
         </div>
         <div class="carousel-items">
             <img src="Carusel-Ayyaqabı.jpg" alt="Sen De Al!">
-            <p>Ayaqqabılar</p>
+            <p style="color: black; margin-top: 8px; font-size: 13.8px;">Ayaqqabılar</p>
         </div>
         <div class="carousel-items">
             <img src="Carusel-Saat.jpg" alt="Gazze'ye Yardım">
-            <p>Aksesuar və Saatlar</p>
+            <p style="color: black; margin-top: 8px; font-size: 13.8px;">Aksesuar və Saatlar</p>
         </div>
         <div class="carousel-items">
             <img src="Carusel-Book.jpg" alt="Deprem Destek">
-            <p>Hobbi və Kitab</p>
+            <p style="color: black; margin-top: 8px; font-size: 13.8px;">Hobbi və Kitab</p>
         </div>
         <div class="carousel-items">
             <img src="Carusel-Hobby.jpeg" alt="Kurumsal">
-            <p>Əyləncə və İstrahətlər</p>
+            <p style="color: black; margin-top: 8px; font-size: 13.8px;">Əyləncə və İstrahətlər</p>
         </div>
         <div class="carousel-items">
             <img src="Carusel-Sport.jpg" alt="Kredi Kartı">
-            <p>İdman Malları</p>
+            <p style="color: black; margin-top: 8px; font-size: 13.8px;">İdman Malları</p>
         </div>
         <div class="carousel-items">
             <img src="Carusel-Childrens.jpg" alt="Krediler">
-            <p>Uşaq Dünyası</p>
+            <p style="color: black; margin-top: 8px; font-size: 13.8px;">Uşaq Dünyası</p>
         </div>
         <div class="carousel-items">
             <img src="Carusel-Elek.jpeg" alt="Apple">
-            <p>Elektronika</p>
+            <p style="color: black; margin-top: 8px; font-size: 13.8px;">Elektronika</p>
         </div>
         <div class="carousel-items">
             <img src="Carusel-Music.jpg" alt="Philips">
-            <p>Musiqi alətləri və avadanlıqları</p>
+            <p style="color: black; margin-top: 8px; font-size: 13.8px;">Musiqi alətləri və avadanlıqları</p>
         </div>
         <div class="carousel-items">
             <img src="Carusel-Gifts.jpg" alt="Pull & Bear">
-            <p>Hədiyyələr</p>
+            <p style="color: black; margin-top: 8px; font-size: 13.8px;">Hədiyyələr</p>
         </div>
     </div>
     <button class="next kataloqButton" onclick="scrollCarousel(1)">&#10095;</button>
@@ -1981,7 +1988,7 @@
           </div>
         </div>
       </section>
-      <section class="py-5 overflow-hidden">
+      <section class=" overflow-hidden">
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-12">
@@ -2003,7 +2010,7 @@
           <div class="carousel-container">
             <!-- <button class="carousel-button prev" onclick="prevCard()">❮</button> -->
             <div class="carousel-wrapper">
-                <div class="product-card product-cardlar product-cardx" data-namex="Məhsul 36" data-pricex="$49.99" data-imagex="sekil 36.jpg" data-id="36" data-name="Məhsul 2" data-price="50" data-image="sekil 36.jpg">
+                <div class="product-card product-cardlar product-cardx" data-namex="Qara Rəng Kofta oversize" data-pricex="$49.99" data-imagex="sekil 36.jpg" data-id="36" data-name="Məhsul 2" data-price="50" data-image="sekil 36.jpg">
                     <div class="image-container">
                         <img src="sekil 36.jpg" alt="Məhsulun Şəkli" class="product-image">
                         <div class=" like-iconx"></div>

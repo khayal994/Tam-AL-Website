@@ -367,27 +367,27 @@ function renderFavorites() {
         listItem.classList.add('favorites-list-item');
 
         listItem.innerHTML = `
-            <img src="${fav.image}" alt="${fav.name}" style="width: 150px;height: 150px;">
-            <div class="product-infox">
-                <p class="product-pricex" style="font-size: 20px;top: 45px;position: absolute;">${fav.price}</p>
-                <p class="product-namex" style="font-size: 14px;position: absolute;top: 75px;">${fav.name}</p>
-                <span class="animated-delivery animated as" style="margin-left: 150px;position: absolute;top: 105px;">Çatdırılma Pulsuz 0₼</span>
-                <div class="product-rating" style="position: absolute;top: 105px;">
-                            <span class="star">★</span>
-                            <span class="star ara">★</span>
-                            <span class="star ara">★</span>
-                            <span class="star ara">★</span>
-                            <span class="star ara">☆<span class="deyer"> 22</span></span>        
-                </div>
-                <p class="add-to-cart" style="position: absolute;top: 135px;">Səbətə əlavə et</p>
-                <span class="remove-icon" style="position: absolute;top: 10px;">&times;</span>
-            </div>
+        <img src="${fav.image}" alt="${fav.name}">
+        <div class="product-infox">
+            <p class="product-namex">${fav.name}</p>
+            <p class="product-pricex">${fav.price}</p>
+            <p class="add-to-cart">Səbətə əlavə et</p>
+            <span class="remove-icon">&times;</span>
+        </div>
         `;
 
         // Remove icon click event
         listItem.querySelector('.remove-icon').addEventListener('click', function() {
             favorites = favorites.filter(f => f.name !== fav.name);
             localStorage.setItem('favorites', JSON.stringify(favorites));
+
+            // Kartdakı like-iconu tam qırmızı halından çıxarmaq
+            document.querySelectorAll('.product-cardx').forEach(function(card) {
+                if (card.getAttribute('data-namex') === fav.name) {
+                    card.querySelector('.like-iconx').classList.remove('filled');
+                }
+            });
+
             renderFavorites();
             updateFavoriteCount();
         });
@@ -404,3 +404,126 @@ function showNotification() {
         notification.classList.remove('show');
     }, 3000);
 }
+// Drop down 
+function toggleDropdown(events) {
+    events.preventDefault();
+    const dropdown = events.target.closest('a').nextElementSibling;
+    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+}
+document.addEventListener('click', function(events) {
+    const isClickInside = document.querySelector('.user-actions').contains(events.target);
+    if (!isClickInside) {
+        document.querySelector('.dropdown-menu').style.display = 'none';
+    }
+});
+        // Sample product data with category, price, size, gender, color, brand, and shoeSize
+        const products = [
+            { id: 1, name: 'Məhsul 1', image: 'product1.jpg', category: 'Elektronika', price: 50, size: 'M', gender: 'men', color: 'red', brand: 'Brand 1', shoeSize: '42' },
+            { id: 2, name: 'Məhsul 2', image: 'product2.jpg', category: 'Geyim', price: 75, size: 'L', gender: 'women', color: 'blue', brand: 'Brand 2', shoeSize: '38' },
+            { id: 3, name: 'Məhsul 3', image: 'product3.jpg', category: 'Kitab', price: 30, size: 'XL', gender: 'men', color: 'green', brand: 'Brand 1', shoeSize: '40' },
+            { id: 4, name: 'Məhsul 4', image: 'product1.jpg', category: 'Elektronika', price: 50, size: 'M', gender: 'men', color: 'black', brand: 'Brand 2', shoeSize: '41' },
+            { id: 5, name: 'Məhsul 5', image: 'product2.jpg', category: 'Geyim', price: 75, size: 'L', gender: 'women', color: 'red', brand: 'Brand 1', shoeSize: '39' },
+            { id: 6, name: 'Məhsul 6', image: 'product3.jpg', category: 'Kitab', price: 30, size: 'XL', gender: 'men', color: 'blue', brand: 'Brand 2', shoeSize: '37' },
+            { id: 7, name: 'Məhsul 7', image: 'product1.jpg', category: 'Elektronika', price: 50, size: 'M', gender: 'men', color: 'green', brand: 'Brand 1', shoeSize: '42' },
+            { id: 8, name: 'Məhsul 8', image: 'product2.jpg', category: 'Geyim', price: 75, size: 'L', gender: 'women', color: 'black', brand: 'Brand 2', shoeSize: '38' },
+            { id: 9, name: 'Məhsul 9', image: 'product3.jpg', category: 'Kitab', price: 30, size: 'XL', gender: 'men', color: 'red', brand: 'Brand 1', shoeSize: '40' },
+            { id: 10, name: 'Məhsul 10', image: 'product1.jpg', category: 'Elektronika', price: 50, size: 'M', gender: 'men', color: 'blue', brand: 'Brand 2', shoeSize: '41' },
+            { id: 11, name: 'Məhsul 11', image: 'product2.jpg', category: 'Geyim', price: 75, size: 'L', gender: 'women', color: 'green', brand: 'Brand 1', shoeSize: '39' },
+            { id: 12, name: 'Məhsul 12', image: 'product3.jpg', category: 'Kitab', price: 30, size: 'XL', gender: 'men', color: 'black', brand: 'Brand 2', shoeSize: '37' }
+            // Əlavə məhsullar
+        ];
+
+        // Məhsulları filterləmək üçün funksiya
+        function filterProducts(products) {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase().trim();
+            const genderFilter = document.getElementById('genderFilter').value.toLowerCase().trim();
+            const colorFilter = document.getElementById('colorFilter').value.toLowerCase().trim();
+            const sizeFilter = document.getElementById('sizeFilter').value.trim();
+            const minPriceFilter = document.getElementById('minPriceFilter').value.trim();
+            const maxPriceFilter = document.getElementById('maxPriceFilter').value.trim();
+            const brandFilter = document.getElementById('brandFilter').value.toLowerCase().trim();
+            const shoeSizeFilter = document.getElementById('shoeSizeFilter').value.trim();
+
+            const filteredProducts = products.filter(product => {
+                const productName = product.name.toLowerCase();
+                const productCategory = product.category.toLowerCase();
+                const isSearchMatch = productName.includes(searchInput) || productCategory.includes(searchInput);
+                const isGenderMatch = genderFilter ? product.gender === genderFilter : true;
+                const isColorMatch = colorFilter ? product.color === colorFilter : true;
+                const isSizeMatch = sizeFilter ? product.size.toLowerCase() === sizeFilter.toLowerCase() : true;
+                const isMinPriceMatch = minPriceFilter ? product.price >= parseInt(minPriceFilter) : true;
+                const isMaxPriceMatch = maxPriceFilter ? product.price <= parseInt(maxPriceFilter) : true;
+                const isBrandMatch = brandFilter ? product.brand.toLowerCase().includes(brandFilter) : true;
+                const isShoeSizeMatch = shoeSizeFilter ? product.shoeSize === shoeSizeFilter : true;
+
+                return isSearchMatch && isGenderMatch && isColorMatch && isSizeMatch && isMinPriceMatch && isMaxPriceMatch && isBrandMatch && isShoeSizeMatch;
+            });
+
+            return filteredProducts;
+        }
+
+        // Məhsulları göstərmək üçün funksiya
+        function displayProducts() {
+            const container = document.getElementById('productContainer');
+            container.innerHTML = '';
+
+            const filteredProducts = filterProducts(products);
+            
+            filteredProducts.forEach(product => {
+                const card = createProductCard(product);
+                container.appendChild(card);
+            });
+        }
+
+        // Məhsul kartı yaratmaq üçün funksiya
+        function createProductCard(product) {
+            const card = document.createElement('div');
+            card.classList.add('product-card');
+
+            const img = document.createElement('img');
+            img.src = `images/${product.image}`;
+            img.alt = product.name;
+            card.appendChild(img);
+
+            const title = document.createElement('h3');
+            title.textContent = product.name;
+            card.appendChild(title);
+
+            const category = document.createElement('p');
+            category.textContent = `Kateqoriya: ${product.category}`;
+            card.appendChild(category);
+
+            const price = document.createElement('p');
+            price.textContent = `Qiymət: ${product.price} AZN`;
+            card.appendChild(price);
+
+            const size = document.createElement('p');
+            size.textContent = `Ölçü: ${product.size}`;
+            card.appendChild(size);
+
+            const gender = document.createElement('p');
+            gender.textContent = `Cinsiyyət: ${product.gender}`;
+            card.appendChild(gender);
+
+            const color = document.createElement('p');
+            color.textContent = `Rəng: ${product.color}`;
+            card.appendChild(color);
+
+            const brand = document.createElement('p');
+            brand.textContent = `Marka: ${product.brand}`;
+            card.appendChild(brand);
+
+            const shoeSize = document.createElement('p');
+            shoeSize.textContent = `Ayakkabı Ölçüsü: ${product.shoeSize}`;
+            card.appendChild(shoeSize);
+
+            return card;
+        }
+
+        // Məhsulları axtarmaq üçün funksiya
+        function searchProducts() {
+            displayProducts();
+        }
+
+        // Başlanğıcda məhsulları göstər
+        displayProducts();
